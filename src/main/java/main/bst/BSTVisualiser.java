@@ -16,7 +16,7 @@ public class BSTVisualiser extends Application {
 
     @Override
     public void start(Stage stage) {
-        // Initialize class variables instead of local ones
+
         bst = new BST();
         canvas = new Canvas(800, 600);
         gc = canvas.getGraphicsContext2D();
