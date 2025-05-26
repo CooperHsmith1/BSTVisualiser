@@ -6,15 +6,15 @@ public class BST {
 
     public TreeNode insertRecursion(TreeNode current, int value)
     {
-        if (root == null){
-            root = new TreeNode(value);
+        if (current == null){
+            current = new TreeNode(value);
         }
-        else if (value < root.value)
+        else if (value < current.value)
         {
             current.left = insertRecursion(current.left, value);
 
         }
-        else if (value > root.value)
+        else if (value > current.value)
         {
             current.right = insertRecursion(current.right, value);
         }
@@ -22,6 +22,12 @@ public class BST {
     }
     public void insert(int value){
         root = insertRecursion(root, value);
+    }
+    public int find(TreeNode node){
+        while (node.left != null){
+            node = node.left;
+        }
+        return node.value;
     }
 
     public TreeNode deleterecursion(TreeNode node, int value)
@@ -46,8 +52,14 @@ public class BST {
             if (node.right == null){
                 return node.left;
             }
+            int smallest_value = find(node.right);
+            node.value = smallest_value;
+            node.right = deleterecursion(node.right, smallest_value);
         }
         return node;
+    }
+    public void delete(int value){
+        root = deleterecursion(root, value);
     }
 
 }
